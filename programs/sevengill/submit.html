@@ -107,48 +107,56 @@
         </div>
       </section>
 
-      <!-- ========== § About the Sighting ========== -->
-      <section class="form-section">
-        <div class="section-label">
-          <span class="numeral">§ III</span>
-          <span class="label">About the Sighting</span>
-        </div>
+      <!-- ========== Optional details (collapsed disclosure) ========== -->
+      <details class="optional-block">
+        <summary>
+          <span class="optional-toggle-label">More details</span>
+          <span class="optional-toggle-hint">all optional, expand to add</span>
+        </summary>
 
-        <div class="form-row-pair">
-          <div class="form-row">
-            <label for="depth">Depth <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
-            <input type="text" id="depth" name="depth" placeholder="e.g. 8 m / surface / shore">
+        <!-- ========== § About the Sighting ========== -->
+        <section class="form-section">
+          <div class="section-label">
+            <span class="numeral">§ III</span>
+            <span class="label">About the Sighting</span>
           </div>
-          <div class="form-row">
-            <label for="conditions">Conditions <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
-            <input type="text" id="conditions" name="conditions" placeholder="e.g. murky, 60°F, slack tide">
-          </div>
-        </div>
 
-        <div class="form-row">
-          <label for="notes">Notes from the field <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
-          <textarea id="notes" name="notes" rows="3" placeholder="Anything unusual? Behaviour, scars, group size, time of day, prior sightings of what looks like the same shark…"></textarea>
-        </div>
-      </section>
-
-      <!-- ========== § Who You Are ========== -->
-      <section class="form-section">
-        <div class="section-label">
-          <span class="numeral">§ IV</span>
-          <span class="label">Who You Are</span>
-        </div>
-
-        <div class="form-row-pair">
-          <div class="form-row">
-            <label for="submitterName">Name <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
-            <input type="text" id="submitterName" name="submitter_name" placeholder="As you'd like to be credited">
+          <div class="form-row-pair">
+            <div class="form-row">
+              <label for="depth">Depth</label>
+              <input type="text" id="depth" name="depth" placeholder="e.g. 8 m / surface / shore">
+            </div>
+            <div class="form-row">
+              <label for="conditions">Conditions</label>
+              <input type="text" id="conditions" name="conditions" placeholder="e.g. murky, 60°F, slack tide">
+            </div>
           </div>
+
           <div class="form-row">
-            <label for="submitterEmail">Email <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional, but lets us write back)</span></label>
-            <input type="email" id="submitterEmail" name="submitter_email" placeholder="you@example.com">
+            <label for="notes">Notes from the field</label>
+            <textarea id="notes" name="notes" rows="3" placeholder="Anything unusual? Behaviour, scars, group size, time of day, prior sightings of what looks like the same shark…"></textarea>
           </div>
-        </div>
-      </section>
+        </section>
+
+        <!-- ========== § Who You Are ========== -->
+        <section class="form-section" style="margin-bottom: 0;">
+          <div class="section-label">
+            <span class="numeral">§ IV</span>
+            <span class="label">Who You Are</span>
+          </div>
+
+          <div class="form-row-pair">
+            <div class="form-row">
+              <label for="submitterName">Name</label>
+              <input type="text" id="submitterName" name="submitter_name" placeholder="As you'd like to be credited">
+            </div>
+            <div class="form-row">
+              <label for="submitterEmail">Email <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(lets us write back)</span></label>
+              <input type="email" id="submitterEmail" name="submitter_email" placeholder="you@example.com">
+            </div>
+          </div>
+        </section>
+      </details>
 
       <!-- ========== § Permission to Use ========== -->
       <section class="form-section">
@@ -161,7 +169,8 @@
           <span class="annotation">
             OSEA never sells or trades photographs. Locations of individual
             sharks are scrubbed to a 0.1° grid (~11 km) on any public-facing
-            page to protect them from poachers.
+            page to protect them from poachers. Full policy in
+            <a href="../../data-policy.html">data &amp; privacy</a>.
           </span>
 
           <div class="consent-row">
@@ -210,7 +219,7 @@
       </p>
     </div>
     <div class="colophon" style="grid-column: 1 / -1;">
-      <span>© <span id="year">2026</span> OSEA Science · A California 501(c)(3) nonprofit · Catalogue v1</span>
+      <span>© <span id="year">2026</span> OSEA Science · A California 501(c)(3) nonprofit · <a href="../../data-policy.html">Data &amp; Privacy</a></span>
       <span>Set in <em>Fraunces</em>, <em>Manrope</em>, <em>DM&nbsp;Mono</em></span>
     </div>
   </div>
