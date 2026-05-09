@@ -19,6 +19,7 @@
   const photoRemove = document.getElementById('photoRemove');
   const exifStrip = document.getElementById('exifStrip');
   const capturedAt = document.getElementById('capturedAt');
+  const capturedAtRow = document.getElementById('capturedAtRow');
   const coordReadout = document.getElementById('coordReadout');
   const form = document.getElementById('submitForm');
   const submitBtn = document.getElementById('submitBtn');
@@ -109,6 +110,8 @@
     photoPlate.classList.remove('has-image');
     exifStrip.innerHTML = '';
     exifStrip.hidden = true;
+    capturedAt.value = '';
+    capturedAtRow.hidden = true;
   }
 
   // --- EXIF parsing ------------------------------------------------------
@@ -121,6 +124,7 @@
       exifData = data || {};
 
       const chips = [];
+      let dateFound = false;
 
       if (data && data.DateTimeOriginal) {
         const d = new Date(data.DateTimeOriginal);
@@ -133,8 +137,12 @@
             year: 'numeric', month: 'short', day: 'numeric',
             hour: '2-digit', minute: '2-digit',
           })]);
+          dateFound = true;
         }
       }
+
+      // Show the manual date field only when we couldn't read it from EXIF.
+      capturedAtRow.hidden = dateFound;
 
       if (data && typeof data.latitude === 'number' && typeof data.longitude === 'number') {
         pinLatLng = { lat: data.latitude, lng: data.longitude };
@@ -166,6 +174,7 @@
       }
     } catch (err) {
       console.warn('EXIF parse failed:', err);
+      capturedAtRow.hidden = false;
     }
   }
 

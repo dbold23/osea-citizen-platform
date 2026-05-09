@@ -88,10 +88,10 @@
         </div>
 
         <div class="form-row-pair">
-          <div class="form-row">
+          <div class="form-row" id="capturedAtRow" hidden>
             <label for="capturedAt">Date taken</label>
             <input type="datetime-local" id="capturedAt" name="captured_at">
-            <span class="helper">Auto-filled from photograph metadata when present.</span>
+            <span class="helper">We couldn't read this from the photograph, please enter it by hand.</span>
           </div>
           <div class="form-row">
             <label for="locationName">Location name <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
