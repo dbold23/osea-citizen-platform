@@ -141,7 +141,7 @@
         chips.push(['GPS', `${data.latitude.toFixed(4)}°, ${data.longitude.toFixed(4)}°`]);
         renderPin(pinLatLng);
         coordReadout.textContent =
-          `From photograph: ${pinLatLng.lat.toFixed(4)}°, ${pinLatLng.lng.toFixed(4)}° — drag the pin to adjust.`;
+          `From photograph: ${pinLatLng.lat.toFixed(4)}°, ${pinLatLng.lng.toFixed(4)}°, drag the pin to adjust.`;
       }
 
       if (data && data.Make && data.Model) {
@@ -162,7 +162,7 @@
       } else {
         exifStrip.hidden = false;
         exifStrip.innerHTML =
-          '<span class="exif-chip"><span class="key">META</span><span class="val">No EXIF metadata in this file — that\'s fine, just fill in date and place by hand.</span></span>';
+          '<span class="exif-chip"><span class="key">META</span><span class="val">No EXIF metadata in this file, that\'s fine, just fill in date and place by hand.</span></span>';
       }
     } catch (err) {
       console.warn('EXIF parse failed:', err);
@@ -288,7 +288,7 @@
         payload = {
           submission_id: 'LOCAL-' + Date.now().toString(36).toUpperCase(),
           status: 'pending_review',
-          message: 'Backend not yet deployed — this is a local preview confirmation.',
+          message: 'Backend not yet deployed, this is a local preview confirmation.',
         };
       }
       sessionStorage.setItem('osea_last_submission', JSON.stringify(payload));

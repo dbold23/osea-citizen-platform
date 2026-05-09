@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thank you — OSEA Citizen Science</title>
+  <title>Thank you, OSEA Citizen Science</title>
   <link rel="stylesheet" href="assets/css/main.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23f4ede4' stroke='%231a2332' stroke-width='1.5'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia, serif' font-size='14' font-style='italic' fill='%230d4f5e'%3EO%3C/text%3E%3C/svg%3E">
 </head>
@@ -31,16 +31,16 @@
     </h1>
     <p class="lede" style="margin: 0 auto var(--space-6); max-width: 38ch;">
       Your photograph is in the queue. A scientist will confirm the
-      identification — this typically takes a few days.
+      identification, this typically takes a few days.
     </p>
 
     <div style="margin: var(--space-8) auto var(--space-6); padding: var(--space-4); border: 1px solid var(--ink-light); display: inline-block;">
       <span class="kicker" style="display:block; margin-bottom: var(--space-2);">Field Note Filed</span>
-      <span class="mono" id="submissionId" style="font-size: 1.1rem; color: var(--ocean);">—</span>
+      <span class="mono" id="submissionId" style="font-size: 1.1rem; color: var(--ocean);">, </span>
     </div>
 
     <p class="annotation" style="margin: var(--space-4) auto var(--space-8); max-width: 44ch;" id="confirmMessage">
-      Save this number — it's how we'll reference your sighting if we need
+      Save this number, it's how we'll reference your sighting if we need
       to follow up.
     </p>
 
@@ -88,7 +88,7 @@
       </ul>
     </div>
     <div class="colophon" style="grid-column: 1 / -1;">
-      <span>© <span id="year">2026</span> OSEA Science · A registered nonprofit</span>
+      <span>© <span id="year">2026</span> OSEA Science · A California 501(c)(3) nonprofit</span>
       <span>Set in <em>Fraunces</em>, <em>Manrope</em>, <em>DM&nbsp;Mono</em></span>
     </div>
   </div>
@@ -100,7 +100,7 @@
     const raw = sessionStorage.getItem('osea_last_submission');
     if (raw) {
       const data = JSON.parse(raw);
-      document.getElementById('submissionId').textContent = data.submission_id || '—';
+      document.getElementById('submissionId').textContent = data.submission_id || ', ';
       if (data.message) {
         const note = document.getElementById('confirmMessage');
         note.textContent = data.message + ' Save this number for reference.';

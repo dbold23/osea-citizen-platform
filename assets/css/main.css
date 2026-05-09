@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,400..900,0..100,0..1;1,9..144,400..900,0..100,0..1&family=Manrope:wght@300..700&family=DM+Mono:wght@400;500&display=swap');
 
 /* =========================================================================
-   OSEA CITIZEN SCIENCE — naturalist field-notebook aesthetic
+   OSEA CITIZEN SCIENCE, naturalist field-notebook aesthetic
    ========================================================================= */
 
 :root {
-  /* Palette — aged paper + deep ocean inks */
+  /* Palette, aged paper + deep ocean inks */
   --paper: #f4ede4;
   --paper-fade: #ede4d3;
   --surface: #fbf7ef;
@@ -663,7 +663,7 @@ strong { font-weight: 600; }
   .form-row-pair { grid-template-columns: 1fr 1fr; }
 }
 
-/* Photo plate — drag/drop area */
+/* Photo plate, drag/drop area */
 .photo-plate {
   position: relative;
   background: var(--paper);

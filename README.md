@@ -1,6 +1,6 @@
 # OSEA Citizen Science Platform
 
-The static frontend for OSEA's citizen science platform — submissions, programs, partner onboarding, donations, and an internal moderator queue. Hosted on GitHub Pages for V1; will eventually live at `sightings.oseascience.com`.
+The static frontend for OSEA's citizen science platform, submissions, programs, partner onboarding, donations, and an internal moderator queue. Hosted on GitHub Pages for V1; will eventually live at `sightings.oseascience.com`.
 
 The flagship program is the **Broadnose Sevengill Shark** photographic catalogue. Architecture is multi-program from day 1, ready to host any patterned marine species (leopard sharks, eagle rays, etc.).
 
@@ -48,11 +48,11 @@ Add a custom domain (`sightings.oseascience.com`) in repo Settings → Pages →
 
 ## Aesthetic
 
-Naturalist field-notebook editorial — Fraunces (display) + Manrope (body) + DM Mono (data). Aged-paper warm palette with deep ocean accent. Section numerals (`§ I`), Roman-numeral steps, "photo plate" drop zone with corner brackets, rubber-stamp status badges. Distinct from generic ocean-conservation sites by design.
+Naturalist field-notebook editorial, Fraunces (display) + Manrope (body) + DM Mono (data). Aged-paper warm palette with deep ocean accent. Section numerals (`§ I`), Roman-numeral steps, "photo plate" drop zone with corner brackets, rubber-stamp status badges. Distinct from generic ocean-conservation sites by design.
 
 ## Backend (separate)
 
-The Flask backend lives in a separate repo / Render service: `osea-api.onrender.com`. Until it's deployed, the submission form short-circuits to a local-only confirmation (the form still validates, parses EXIF, and renders the thanks page; the data isn't persisted server-side). The form auto-detects backend availability — once the API is live and reachable, real submissions go through.
+The Flask backend lives in a separate repo / Render service: `osea-api.onrender.com`. Until it's deployed, the submission form short-circuits to a local-only confirmation (the form still validates, parses EXIF, and renders the thanks page; the data isn't persisted server-side). The form auto-detects backend availability, once the API is live and reachable, real submissions go through.
 
 To override the API base URL for local testing:
 
