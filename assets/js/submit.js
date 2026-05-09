@@ -33,15 +33,15 @@
   let pinLatLng = null;  // {lat, lng} when set
 
   // --- File picker / drag-drop ------------------------------------------
+  // The file input is positioned absolutely over the entire photo-plate
+  // (see .photo-plate-input in main.css). Clicks on the plate are received
+  // by the input itself and the browser opens the picker natively, which
+  // sidesteps the mobile-browser bugs around programmatic .click() on
+  // hidden inputs. The handler below is a defensive fallback.
   photoPlate.addEventListener('click', (e) => {
-    if (e.target.closest('.photo-plate-actions')) return; // ignore action buttons
+    if (e.target === photoInput) return;                  // input handled it natively
+    if (e.target.closest('.photo-plate-actions')) return; // Replace/Remove buttons
     photoInput.click();
-  });
-  photoPlate.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      photoInput.click();
-    }
   });
 
   ['dragenter', 'dragover'].forEach((ev) => {
