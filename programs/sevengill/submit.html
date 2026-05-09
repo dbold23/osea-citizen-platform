@@ -31,38 +31,33 @@
 
     <header class="notebook-header">
       <div>
-        <span class="field-no" id="fieldNoLabel">FIELD NOTE №&hairsp;<span id="fieldNoNum">,  DRAFT, </span></span>
-        <h1 class="title">A Sevengill <em>Sighting</em></h1>
+        <span class="program-tag">Sevengill program</span>
+        <h1 class="title">Submit a <em>sevengill</em> sighting</h1>
       </div>
-      <span class="program-tag">Plate I · Sevengill</span>
+      <span class="field-no" id="fieldNoLabel">Draft #<span id="fieldNoNum">,  DRAFT, </span></span>
     </header>
 
-    <p class="lede" style="margin-bottom: var(--space-12);">
-      Fill in what you can. We read the rest off the photograph itself,
-      time, place, camera. The whole thing is voluntary, optional fields
-      will sit blank without complaint.
+    <p class="lede" style="margin-bottom: var(--space-8);">
+      Add a photo, we'll read date, location, and camera straight off the
+      file. Everything else is optional.
     </p>
 
     <form id="submitForm" novalidate>
 
-      <!-- ========== § Photograph ========== -->
+      <!-- ========== Photo ========== -->
       <section class="form-section">
         <div class="section-label">
-          <span class="numeral">§ I</span>
-          <span class="label">Photograph</span>
+          <span class="numeral">1</span>
+          <span class="label">Photo</span>
         </div>
 
         <div class="photo-plate" id="photoPlate" tabindex="0" role="button"
-             aria-label="Click or drag a photograph here to upload">
-          <span class="corner tl"></span>
-          <span class="corner tr"></span>
-          <span class="corner bl"></span>
-          <span class="corner br"></span>
+             aria-label="Tap or drag a photo here to upload">
           <p class="photo-plate-prompt">
-            Drop a photograph here, <em>or click to choose one</em>.
+            Tap to add a photo <em>or drag one here</em>
           </p>
           <p class="photo-plate-sub">
-            JPG · PNG · HEIC &nbsp;·&nbsp; up to 25 MB &nbsp;·&nbsp; original resolution preferred
+            JPG, PNG, or HEIC &nbsp;·&nbsp; up to 25 MB &nbsp;·&nbsp; original resolution preferred
           </p>
           <input type="file" id="photoInput" accept="image/jpeg,image/png,image/heic,image/heif" hidden>
 
@@ -80,11 +75,11 @@
         <div class="exif-strip" id="exifStrip" hidden></div>
       </section>
 
-      <!-- ========== § Where & When ========== -->
+      <!-- ========== Where & When ========== -->
       <section class="form-section">
         <div class="section-label">
-          <span class="numeral">§ II</span>
-          <span class="label">Where &amp; When</span>
+          <span class="numeral">2</span>
+          <span class="label">Where &amp; when</span>
         </div>
 
         <div class="form-row-pair">
@@ -114,11 +109,11 @@
           <span class="optional-toggle-hint">all optional, expand to add</span>
         </summary>
 
-        <!-- ========== § About the Sighting ========== -->
+        <!-- ========== About the sighting ========== -->
         <section class="form-section">
           <div class="section-label">
-            <span class="numeral">§ III</span>
-            <span class="label">About the Sighting</span>
+            <span class="numeral">3</span>
+            <span class="label">About the sighting</span>
           </div>
 
           <div class="form-row-pair">
@@ -138,11 +133,11 @@
           </div>
         </section>
 
-        <!-- ========== § Who You Are ========== -->
+        <!-- ========== Who you are ========== -->
         <section class="form-section" style="margin-bottom: 0;">
           <div class="section-label">
-            <span class="numeral">§ IV</span>
-            <span class="label">Who You Are</span>
+            <span class="numeral">4</span>
+            <span class="label">Who you are</span>
           </div>
 
           <div class="form-row-pair">
@@ -158,11 +153,11 @@
         </section>
       </details>
 
-      <!-- ========== § Permission to Use ========== -->
+      <!-- ========== Permission ========== -->
       <section class="form-section">
         <div class="section-label">
-          <span class="numeral">§ V</span>
-          <span class="label">Permission to Use</span>
+          <span class="numeral">5</span>
+          <span class="label">Permission to use</span>
         </div>
 
         <div class="consent-block">
@@ -195,13 +190,12 @@
 
       <!-- ========== Submit ========== -->
       <div class="submit-footer">
-        <span class="ledger-line">
-          We'll email when a scientist confirms the sighting, typically within a few days.
-          Until then, you'll see your draft Field Note number on the next page.
-        </span>
         <button type="submit" class="btn btn-primary" id="submitBtn">
-          File This Sighting
+          Submit sighting
         </button>
+        <span class="ledger-line">
+          A scientist usually confirms the ID within a few days. We'll email if you left an address.
+        </span>
       </div>
 
     </form>
@@ -220,7 +214,7 @@
     </div>
     <div class="colophon" style="grid-column: 1 / -1;">
       <span>© <span id="year">2026</span> OSEA Science · A California 501(c)(3) nonprofit · <a href="../../data-policy.html">Data &amp; Privacy</a></span>
-      <span>Set in <em>Fraunces</em>, <em>Manrope</em>, <em>DM&nbsp;Mono</em></span>
+      <span>Set in <em>Nunito Sans</em></span>
     </div>
   </div>
 </footer>
