@@ -21,16 +21,16 @@
   const capturedAt = document.getElementById('capturedAt');
   const capturedAtRow = document.getElementById('capturedAtRow');
   const coordReadout = document.getElementById('coordReadout');
+  const locationChip = document.getElementById('locationChip');
+  const locationChipCoords = document.getElementById('locationChipCoords');
+  const locationChipAdjust = document.getElementById('locationChipAdjust');
+  const locationMapWrap = document.getElementById('locationMapWrap');
+  const locationPlaceholder = document.getElementById('locationPlaceholder');
   const form = document.getElementById('submitForm');
   const submitBtn = document.getElementById('submitBtn');
-  const fieldNoNum = document.getElementById('fieldNoNum');
-
   let currentFile = null;
   let exifData = null;
   let pinLatLng = null;  // {lat, lng} when set
-
-  // --- DRAFT field-note number for visual interest -----------------------
-  fieldNoNum.textContent = String(1100 + Math.floor(Math.random() * 800)).padStart(4, '0');
 
   // --- File picker / drag-drop ------------------------------------------
   photoPlate.addEventListener('click', (e) => {
@@ -104,6 +104,7 @@
   function clearFile() {
     currentFile = null;
     exifData = null;
+    pinLatLng = null;
     photoInput.value = '';
     photoImg.src = '';
     photoImgWrap.hidden = true;
@@ -112,6 +113,10 @@
     exifStrip.hidden = true;
     capturedAt.value = '';
     capturedAtRow.hidden = true;
+    locationChip.hidden = true;
+    locationMapWrap.hidden = true;
+    locationPlaceholder.hidden = false;
+    if (leafletMarker) { leafletMarker.remove(); leafletMarker = null; }
   }
 
   // --- EXIF parsing ------------------------------------------------------
@@ -144,12 +149,26 @@
       // Show the manual date field only when we couldn't read it from EXIF.
       capturedAtRow.hidden = dateFound;
 
+      let gpsFound = false;
       if (data && typeof data.latitude === 'number' && typeof data.longitude === 'number') {
         pinLatLng = { lat: data.latitude, lng: data.longitude };
         chips.push(['GPS', `${data.latitude.toFixed(4)}°, ${data.longitude.toFixed(4)}°`]);
         renderPin(pinLatLng);
         coordReadout.textContent =
           `From photograph: ${pinLatLng.lat.toFixed(4)}°, ${pinLatLng.lng.toFixed(4)}°, drag the pin to adjust.`;
+        gpsFound = true;
+      }
+
+      // Decide which location UI to show: chip (EXIF GPS) or map (manual).
+      locationPlaceholder.hidden = true;
+      if (gpsFound) {
+        locationChipCoords.textContent =
+          `${pinLatLng.lat.toFixed(4)}°, ${pinLatLng.lng.toFixed(4)}°`;
+        locationChip.hidden = false;
+        locationMapWrap.hidden = true;
+      } else {
+        locationChip.hidden = true;
+        revealMap();
       }
 
       if (data && data.Make && data.Model) {
@@ -175,7 +194,28 @@
     } catch (err) {
       console.warn('EXIF parse failed:', err);
       capturedAtRow.hidden = false;
+      locationPlaceholder.hidden = true;
+      locationChip.hidden = true;
+      revealMap();
     }
+  }
+
+  function revealMap() {
+    locationMapWrap.hidden = false;
+    // Leaflet needs invalidateSize after the parent un-hides so tiles render.
+    if (leafletMap) {
+      setTimeout(() => leafletMap.invalidateSize(), 0);
+    } else {
+      ensureMap();
+      setTimeout(() => leafletMap && leafletMap.invalidateSize(), 60);
+    }
+  }
+
+  if (locationChipAdjust) {
+    locationChipAdjust.addEventListener('click', () => {
+      locationChip.hidden = true;
+      revealMap();
+    });
   }
 
   function escapeHTML(s) {
@@ -204,8 +244,9 @@
     leafletMap.on('click', (e) => {
       pinLatLng = { lat: e.latlng.lat, lng: e.latlng.lng };
       renderPin(pinLatLng, /*setView=*/ false);
-      coordReadout.textContent =
-        `Pinned: ${pinLatLng.lat.toFixed(4)}°, ${pinLatLng.lng.toFixed(4)}°`;
+      const txt = `${pinLatLng.lat.toFixed(4)}°, ${pinLatLng.lng.toFixed(4)}°`;
+      coordReadout.textContent = `Pinned: ${txt}`;
+      if (locationChipCoords) locationChipCoords.textContent = txt;
     });
   }
 
@@ -219,8 +260,9 @@
     leafletMarker.on('dragend', () => {
       const ll = leafletMarker.getLatLng();
       pinLatLng = { lat: ll.lat, lng: ll.lng };
-      coordReadout.textContent =
-        `Pinned: ${pinLatLng.lat.toFixed(4)}°, ${pinLatLng.lng.toFixed(4)}°`;
+      const txt = `${pinLatLng.lat.toFixed(4)}°, ${pinLatLng.lng.toFixed(4)}°`;
+      coordReadout.textContent = `Pinned: ${txt}`;
+      if (locationChipCoords) locationChipCoords.textContent = txt;
     });
     if (setView) leafletMap.setView([latlng.lat, latlng.lng], 13);
   }
