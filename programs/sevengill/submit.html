@@ -34,7 +34,6 @@
         <span class="program-tag">Sevengill program</span>
         <h1 class="title">Submit a <em>sevengill</em> sighting</h1>
       </div>
-      <span class="field-no" id="fieldNoLabel">Draft #<span id="fieldNoNum">,  DRAFT, </span></span>
     </header>
 
     <p class="lede" style="margin-bottom: var(--space-8);">
@@ -88,10 +87,28 @@
           <span class="helper">We couldn't read this from the photograph, please enter it by hand.</span>
         </div>
 
-        <div class="form-row">
-          <label for="locationPin">Location</label>
-          <div class="map-frame" id="locationMap" aria-label="Tap the map to drop a pin"></div>
-          <span class="helper" id="coordReadout">Tap the map to drop a pin, or upload a photo with GPS data and we'll set it for you.</span>
+        <div class="form-row" id="locationRow">
+          <label>Location</label>
+
+          <!-- Shown after a photo with EXIF GPS is uploaded -->
+          <div class="location-chip" id="locationChip" hidden>
+            <span class="location-chip-icon" aria-hidden="true"></span>
+            <span class="location-chip-text">
+              Pinned from photo: <strong id="locationChipCoords"></strong>
+            </span>
+            <button type="button" class="btn-text" id="locationChipAdjust">Adjust on map</button>
+          </div>
+
+          <!-- Map, shown when no GPS in EXIF or when the user wants to adjust -->
+          <div id="locationMapWrap" hidden>
+            <div class="map-frame" id="locationMap" aria-label="Tap the map to drop a pin"></div>
+            <span class="helper" id="coordReadout">Tap the map to drop a pin.</span>
+          </div>
+
+          <!-- Initial state: nothing yet -->
+          <span class="helper" id="locationPlaceholder">
+            Add a photo and we'll pin its GPS, or set the location yourself once a photo's loaded.
+          </span>
         </div>
       </section>
 
