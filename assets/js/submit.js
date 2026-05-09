@@ -256,7 +256,6 @@
       fd.append('photo', currentFile);
       fd.append('program_slug', PROGRAM_SLUG);
       fd.append('captured_at', capturedAt.value || '');
-      fd.append('location_name', document.getElementById('locationName').value || '');
       if (pinLatLng) {
         fd.append('latitude', pinLatLng.lat);
         fd.append('longitude', pinLatLng.lng);
