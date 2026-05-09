@@ -50,15 +50,14 @@
           <span class="label">Photo</span>
         </div>
 
-        <div class="photo-plate" id="photoPlate" tabindex="0" role="button"
-             aria-label="Tap or drag a photo here to upload">
+        <div class="photo-plate" id="photoPlate">
           <p class="photo-plate-prompt">
             Tap to add a photo <em>or drag one here</em>
           </p>
           <p class="photo-plate-sub">
             JPG, PNG, or HEIC &nbsp;·&nbsp; up to 25 MB &nbsp;·&nbsp; original resolution preferred
           </p>
-          <input type="file" id="photoInput" accept="image/jpeg,image/png,image/heic,image/heif" hidden>
+          <input type="file" id="photoInput" accept="image/jpeg,image/png,image/heic,image/heif" class="photo-plate-input" aria-label="Add a photo of a sevengill sighting">
 
           <!-- (rendered when image is loaded) -->
           <div class="photo-plate-img-wrap" id="photoImgWrap" hidden>
