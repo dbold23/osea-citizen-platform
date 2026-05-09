@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Support OSEA · Donate</title>
+  <meta name="description" content="Support OSEA's marine research. Every donation funds compute, fieldwork, and partner outreach for the citizen science catalogue.">
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23f4ede4' stroke='%231a2332' stroke-width='1.5'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia, serif' font-size='14' font-style='italic' fill='%230d4f5e'%3EO%3C/text%3E%3C/svg%3E">
+  <style>
+    .tier-grid { display: grid; grid-template-columns: 1fr; gap: 0; border: 1px solid var(--ink); margin: var(--space-8) 0; }
+    @media (min-width: 720px) { .tier-grid { grid-template-columns: repeat(4, 1fr); } }
+    .tier {
+      padding: var(--space-8) var(--space-6);
+      border-right: 1px solid var(--pale-line);
+      border-top: 1px solid var(--pale-line);
+      text-align: left;
+      background: var(--surface);
+      transition: background 0.2s;
+      text-decoration: none;
+      background-image: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .tier:hover { background: var(--surface-warm); }
+    @media (min-width: 720px) {
+      .tier:last-child { border-right: none; }
+      .tier { border-top: none; }
+    }
+    .tier .amount {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      font-weight: 400;
+      font-variation-settings: 'opsz' 80, 'WONK' 1;
+      line-height: 1;
+      color: var(--ocean);
+    }
+    .tier .name {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .tier .what {
+      font-family: var(--font-display);
+      font-variation-settings: 'opsz' 24, 'SOFT' 50;
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--ink-light);
+      line-height: 1.4;
+      margin-top: auto;
+    }
+    .tier .cta-line {
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ocean);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--pale-line);
+    }
+    .tier:hover .cta-line { color: var(--coral); }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="/" class="brand"><span class="seal">OS</span><span>OSEA Science</span></a>
+    <nav class="nav">
+      <a href="programs/sevengill/">Programs</a>
+      <a href="about.html">About</a>
+      <a href="donate.html" aria-current="page">Support</a>
+      <a href="programs/sevengill/submit.html" class="submit-cta">Submit a Sighting</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container narrow" style="padding-top: var(--space-16); padding-bottom: var(--space-24);">
+
+  <span class="kicker fade-up">Donations</span>
+  <h1 class="fade-up delay-1" style="margin-top: var(--space-3); margin-bottom: var(--space-6); font-size: clamp(2.2rem, 6vw, 4.5rem);">
+    Pay for the <em>compute</em> that runs the catalogue.
+  </h1>
+  <p class="lede fade-up delay-2" style="margin-bottom: var(--space-12);">
+    OSEA is a small registered nonprofit. We don't sell ads, we don't take grants
+    with strings attached, and we don't have a marketing department. Donations
+    fund three things: research compute, fieldwork, and outreach to partner
+    organizations.
+  </p>
+
+  <p class="annotation fade-up delay-3" style="margin-bottom: var(--space-4);">
+    Each tier opens a Stripe-hosted checkout in a new tab. Recurring donations
+    are an option on the next page. OSEA is a registered 501(c)(3); donations
+    are tax-deductible to the extent allowed by law.
+  </p>
+
+  <div class="tier-grid fade-up delay-4">
+    <a href="https://buy.stripe.com/PLACEHOLDER_25" target="_blank" rel="noopener" class="tier">
+      <span class="name">Field Note</span>
+      <span class="amount">$25</span>
+      <span class="what">Funds the compute to identify ~50 submitted sightings.</span>
+      <span class="cta-line">Donate $25 ↗</span>
+    </a>
+    <a href="https://buy.stripe.com/PLACEHOLDER_75" target="_blank" rel="noopener" class="tier">
+      <span class="name">Encounter</span>
+      <span class="amount">$75</span>
+      <span class="what">Sponsors a quarter of fieldwork at a single site.</span>
+      <span class="cta-line">Donate $75 ↗</span>
+    </a>
+    <a href="https://buy.stripe.com/PLACEHOLDER_250" target="_blank" rel="noopener" class="tier">
+      <span class="name">Plate</span>
+      <span class="amount">$250</span>
+      <span class="what">Underwrites a full month of platform hosting and storage.</span>
+      <span class="cta-line">Donate $250 ↗</span>
+    </a>
+    <a href="https://buy.stripe.com/PLACEHOLDER_CUSTOM" target="_blank" rel="noopener" class="tier">
+      <span class="name">Patron</span>
+      <span class="amount">$ —</span>
+      <span class="what">Choose your own amount. Recurring options on the next page.</span>
+      <span class="cta-line">Donate other ↗</span>
+    </a>
+  </div>
+
+  <article class="form-section" style="margin-top: var(--space-16);">
+    <div class="section-label">
+      <span class="numeral">§ I</span>
+      <span class="label">Where the money goes</span>
+    </div>
+    <p>
+      <strong>Compute.</strong> The catalogue runs computer-vision models to
+      detect bodies, heads, and freckle patterns automatically. That's what
+      makes citizen submissions tractable at scale, and it's most of our cost.
+    </p>
+    <p>
+      <strong>Fieldwork.</strong> Ground-truth data — known individuals
+      photographed across multiple years — is what trains and validates the
+      catalogue. OSEA staff and volunteers spend most of summer in the bays
+      doing that work.
+    </p>
+    <p>
+      <strong>Outreach.</strong> Aquariums, dive shops, schools, and other
+      partner organizations onboard onto the platform free of charge. We pay
+      for their printed QR codes, signage, and basic training.
+    </p>
+  </article>
+
+  <article class="form-section">
+    <div class="section-label">
+      <span class="numeral">§ II</span>
+      <span class="label">Other ways to help</span>
+    </div>
+    <p>
+      <strong><a href="programs/sevengill/submit.html">Submit a sighting.</a></strong>
+      Photographs are the catalogue. A clean profile of a sevengill is worth
+      hours of fieldwork.
+    </p>
+    <p>
+      <strong><a href="partners/register.html">Register your organization.</a></strong>
+      If you run an aquarium, dive shop, school program, or research lab and
+      can drive submissions or co-host the program, we'll set up a partner
+      page in your name.
+    </p>
+    <p>
+      <strong>Spread the word.</strong> Most sevengill photographers don't
+      know we exist. A link in a dive newsletter or a poster at the bait shop
+      goes further than money.
+    </p>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <h4>OSEA Science</h4>
+      <p>Ocean Species &amp; Ecosystem Alliance.</p>
+    </div>
+    <div>
+      <h5>Programs</h5>
+      <ul>
+        <li><a href="programs/sevengill/">Sevengill Catalogue</a></li>
+        <li><a href="programs/sevengill/submit.html">Submit a Sighting</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Get Involved</h5>
+      <ul>
+        <li><a href="donate.html">Support OSEA</a></li>
+        <li><a href="partners/">Partners</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>About</h5>
+      <ul>
+        <li><a href="about.html">About OSEA</a></li>
+        <li><a href="data-policy.html">Data &amp; Privacy</a></li>
+        <li><a href="https://www.oseascience.com" target="_blank" rel="noopener">oseascience.com ↗</a></li>
+      </ul>
+    </div>
+    <div class="colophon" style="grid-column: 1 / -1;">
+      <span>© <span id="year">2026</span> OSEA Science · A registered nonprofit</span>
+      <span>Set in <em>Fraunces</em>, <em>Manrope</em>, <em>DM&nbsp;Mono</em></span>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+
+</body>
+</html>

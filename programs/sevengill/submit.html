@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Submit a Sighting · Sevengill Catalogue · OSEA</title>
+  <meta name="description" content="Submit a photograph of a broadnose sevengill shark to OSEA's research catalogue. Mobile-friendly, EXIF-aware, takes about a minute.">
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <script defer src="https://cdn.jsdelivr.net/npm/exifr@7.1.3/dist/full.umd.js"></script>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23f4ede4' stroke='%231a2332' stroke-width='1.5'/%3E%3Ctext x='16' y='21' text-anchor='middle' font-family='Georgia, serif' font-size='14' font-style='italic' fill='%230d4f5e'%3EO%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../../" class="brand">
+      <span class="seal">OS</span>
+      <span>OSEA Science</span>
+    </a>
+    <nav class="nav">
+      <a href="../sevengill/">Programs</a>
+      <a href="../../about.html">About</a>
+      <a href="../../donate.html">Support</a>
+      <a href="submit.html" aria-current="page" class="submit-cta">Submit a Sighting</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+
+  <article class="notebook-page fade-up">
+
+    <header class="notebook-header">
+      <div>
+        <span class="field-no" id="fieldNoLabel">FIELD NOTE №&hairsp;<span id="fieldNoNum">— DRAFT —</span></span>
+        <h1 class="title">A Sevengill <em>Sighting</em></h1>
+      </div>
+      <span class="program-tag">Plate I · Sevengill</span>
+    </header>
+
+    <p class="lede" style="margin-bottom: var(--space-12);">
+      Fill in what you can. We read the rest off the photograph itself —
+      time, place, camera. The whole thing is voluntary, optional fields
+      will sit blank without complaint.
+    </p>
+
+    <form id="submitForm" novalidate>
+
+      <!-- ========== § Photograph ========== -->
+      <section class="form-section">
+        <div class="section-label">
+          <span class="numeral">§ I</span>
+          <span class="label">Photograph</span>
+        </div>
+
+        <div class="photo-plate" id="photoPlate" tabindex="0" role="button"
+             aria-label="Click or drag a photograph here to upload">
+          <span class="corner tl"></span>
+          <span class="corner tr"></span>
+          <span class="corner bl"></span>
+          <span class="corner br"></span>
+          <p class="photo-plate-prompt">
+            Drop a photograph here, <em>or click to choose one</em>.
+          </p>
+          <p class="photo-plate-sub">
+            JPG · PNG · HEIC &nbsp;·&nbsp; up to 25 MB &nbsp;·&nbsp; original resolution preferred
+          </p>
+          <input type="file" id="photoInput" accept="image/jpeg,image/png,image/heic,image/heif" hidden>
+
+          <!-- (rendered when image is loaded) -->
+          <div class="photo-plate-img-wrap" id="photoImgWrap" hidden>
+            <img class="photo-plate-img" id="photoImg" alt="">
+            <div class="photo-plate-actions">
+              <button type="button" id="photoReplace">Replace</button>
+              <button type="button" id="photoRemove">Remove</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXIF strip — populated from the photo's metadata when available -->
+        <div class="exif-strip" id="exifStrip" hidden></div>
+      </section>
+
+      <!-- ========== § Where & When ========== -->
+      <section class="form-section">
+        <div class="section-label">
+          <span class="numeral">§ II</span>
+          <span class="label">Where &amp; When</span>
+        </div>
+
+        <div class="form-row-pair">
+          <div class="form-row">
+            <label for="capturedAt">Date taken</label>
+            <input type="datetime-local" id="capturedAt" name="captured_at">
+            <span class="helper">Auto-filled from photograph metadata when present.</span>
+          </div>
+          <div class="form-row">
+            <label for="locationName">Location name <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
+            <input type="text" id="locationName" name="location_name" placeholder="e.g. Aquatic Park, Berkeley">
+            <span class="helper">A landmark, beach, or dive site name.</span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="locationPin">Drop a pin <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(or accept the GPS reading from the photo)</span></label>
+          <div class="map-frame" id="locationMap" aria-label="Click anywhere to drop a pin"></div>
+          <span class="helper" id="coordReadout">No coordinates yet — drop a pin or upload a photo with GPS data.</span>
+        </div>
+      </section>
+
+      <!-- ========== § About the Sighting ========== -->
+      <section class="form-section">
+        <div class="section-label">
+          <span class="numeral">§ III</span>
+          <span class="label">About the Sighting</span>
+        </div>
+
+        <div class="form-row-pair">
+          <div class="form-row">
+            <label for="depth">Depth <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
+            <input type="text" id="depth" name="depth" placeholder="e.g. 8 m / surface / shore">
+          </div>
+          <div class="form-row">
+            <label for="conditions">Conditions <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
+            <input type="text" id="conditions" name="conditions" placeholder="e.g. murky, 60°F, slack tide">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <label for="notes">Notes from the field <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
+          <textarea id="notes" name="notes" rows="3" placeholder="Anything unusual? Behaviour, scars, group size, time of day, prior sightings of what looks like the same shark…"></textarea>
+        </div>
+      </section>
+
+      <!-- ========== § Who You Are ========== -->
+      <section class="form-section">
+        <div class="section-label">
+          <span class="numeral">§ IV</span>
+          <span class="label">Who You Are</span>
+        </div>
+
+        <div class="form-row-pair">
+          <div class="form-row">
+            <label for="submitterName">Name <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional)</span></label>
+            <input type="text" id="submitterName" name="submitter_name" placeholder="As you'd like to be credited">
+          </div>
+          <div class="form-row">
+            <label for="submitterEmail">Email <span class="optional" style="font-style:italic;text-transform:none;letter-spacing:0;color:var(--muted);">(optional, but lets us write back)</span></label>
+            <input type="email" id="submitterEmail" name="submitter_email" placeholder="you@example.com">
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== § Permission to Use ========== -->
+      <section class="form-section">
+        <div class="section-label">
+          <span class="numeral">§ V</span>
+          <span class="label">Permission to Use</span>
+        </div>
+
+        <div class="consent-block">
+          <span class="annotation">
+            OSEA never sells or trades photographs. Locations of individual
+            sharks are scrubbed to a 0.1° grid (~11 km) on any public-facing
+            page to protect them from poachers. Full policy in
+            <a href="../../data-policy.html">data &amp; privacy</a>.
+          </span>
+
+          <div class="consent-row">
+            <input type="checkbox" id="consentResearch" name="consent_research" required>
+            <label for="consentResearch">
+              I own this photograph (or have permission to share it), and I grant OSEA
+              the right to use it for non-commercial scientific research.
+              <span class="req">required</span>
+            </label>
+          </div>
+
+          <div class="consent-row">
+            <input type="checkbox" id="consentPublic" name="consent_public">
+            <label for="consentPublic">
+              OSEA may also display this photograph on the public catalogue
+              and in outreach materials, with attribution if I provided a name.
+              <em>(Optional. Locations are scrubbed regardless.)</em>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ========== Submit ========== -->
+      <div class="submit-footer">
+        <span class="ledger-line">
+          We'll email when a scientist confirms the sighting — typically within a few days.
+          Until then, you'll see your draft Field Note number on the next page.
+        </span>
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+          File This Sighting
+        </button>
+      </div>
+
+    </form>
+  </article>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <h4>OSEA Science</h4>
+      <p>
+        Ocean Species &amp; Ecosystem Alliance. Citizen-science catalogues
+        for patterned marine animals.
+      </p>
+    </div>
+    <div>
+      <h5>Programs</h5>
+      <ul>
+        <li><a href="../sevengill/">Sevengill Catalogue</a></li>
+        <li><a href="../sevengill/learn.html">Learn More</a></li>
+        <li><a href="submit.html">Submit a Sighting</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Get Involved</h5>
+      <ul>
+        <li><a href="../../donate.html">Support OSEA</a></li>
+        <li><a href="../../partners/">Partner Organizations</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>About</h5>
+      <ul>
+        <li><a href="../../about.html">About OSEA</a></li>
+        <li><a href="../../data-policy.html">Data &amp; Privacy</a></li>
+        <li><a href="https://www.oseascience.com" target="_blank" rel="noopener">oseascience.com ↗</a></li>
+      </ul>
+    </div>
+    <div class="colophon" style="grid-column: 1 / -1;">
+      <span>© <span id="year">2026</span> OSEA Science · A registered nonprofit · Catalogue v1</span>
+      <span>Set in <em>Fraunces</em>, <em>Manrope</em>, <em>DM&nbsp;Mono</em></span>
+    </div>
+  </div>
+</footer>
+
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+<script src="../../assets/js/submit.js"></script>
+
+</body>
+</html>
