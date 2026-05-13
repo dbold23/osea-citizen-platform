@@ -2,7 +2,7 @@
 
 The static frontend for OSEA's citizen science platform, submissions, programs, partner onboarding, donations, and an internal moderator queue. Hosted on GitHub Pages for V1; will eventually live at `sightings.oseascience.com`.
 
-The flagship program is the **Broadnose Sevengill Shark** photographic catalogue. Architecture is multi-program from day 1, ready to host any patterned marine species (leopard sharks, eagle rays, etc.).
+The flagship program is the **Broadnose Sevengill Shark** photographic catalogue. Architecture is multi-program from day 1, ready to host any patterned marine species (leopard sharks, eagle rays, etc.). Leopard sharks caputures in conjucntion with OPEL.
 
 ## Local preview
 
