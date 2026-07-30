@@ -2,7 +2,7 @@
 
 The static frontend for OSEA's citizen science platform, submissions, programs, partner onboarding, donations, and an internal moderator queue. Hosted on GitHub Pages for V1; will eventually live at `sightings.oseascience.com`.
 
-The flagship program is the **Broadnose Sevengill Shark** photographic catalogue. Architecture is multi-program from day 1, ready to host any patterned marine species (leopard sharks, eagle rays, etc.). Leopard sharks caputures in conjucntion with OPEL.
+The flagship program is the **Broadnose Sevengill Shark** photographic catalogue. Architecture is multi-program from day 1, ready to host any patterned marine species (leopard sharks, eagle rays, etc.). Leopard shark captures are conducted in conjunction with OPEL.
 
 ## Local preview
 
@@ -17,7 +17,7 @@ python3 -m http.server 8080 --directory .
 GitHub Pages is enabled on `main`. Once pushed:
 
 ```
-https://<github-user>.github.io/osea-citizen-platform/
+https://dbold23.github.io/osea-citizen-platform/
 ```
 
 Add a custom domain (`sightings.oseascience.com`) in repo Settings → Pages → Custom domain whenever DNS is ready.
@@ -73,8 +73,6 @@ V1 frontend is shipped. Remaining work is on the backend (separate repo) and dow
 - Stripe Payment Links replacing the placeholder URLs on `donate.html`
 - Real CAPTCHA (Cloudflare Turnstile or hCaptcha) on the submission form
 - Hook up `/admin/` to the real queue API
-
-See the master plan at `~/.claude/plans/frolicking-napping-patterson.md` for the full roadmap.
 
 ## License
 
