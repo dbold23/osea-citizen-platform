@@ -2,8 +2,11 @@
    - Drag-drop / file picker for the photograph
    - Client-side EXIF parsing via exifr (date, GPS, camera)
    - Leaflet map for manual pin (or auto-populated from EXIF)
-   - Stub POST to backend (/api/submit). Until the backend ships, this
-     short-circuits to a confirmation render so the form is testable now. */
+   - POST to backend (/api/submit). A sighting is only confirmed when the
+     backend says so; a failure must surface to the submitter.
+
+   Currently unreferenced: the form is paused (see submit.html) while the
+   backend is offline. Kept so the form can be restored once it is live. */
 
 (() => {
   'use strict';
