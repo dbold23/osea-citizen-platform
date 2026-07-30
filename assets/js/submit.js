@@ -314,38 +314,27 @@
       const params = new URLSearchParams(window.location.search);
       if (params.get('venue')) fd.append('venue', params.get('venue'));
 
-      // Try the backend; fall back to a local-only confirmation while it's not deployed.
-      let resp;
-      try {
-        resp = await fetch(`${API_BASE}/api/submit`, {
-          method: 'POST',
-          body: fd,
-        });
-      } catch (netErr) {
-        console.warn('Backend unreachable; rendering local stub confirmation.', netErr);
-      }
+      // A sighting is only filed if the backend confirms it. A network failure
+      // must reach the catch below, never a fabricated confirmation: showing
+      // someone a thank-you page for a submission we dropped is worse than
+      // showing them an error.
+      const resp = await fetch(`${API_BASE}/api/submit`, {
+        method: 'POST',
+        body: fd,
+      });
 
-      let payload = null;
-      if (resp && resp.ok) {
-        payload = await resp.json();
-      } else if (resp && !resp.ok) {
+      if (!resp.ok) {
         const txt = await resp.text();
         throw new Error(`Backend rejected the submission: ${resp.status} ${txt}`);
       }
 
-      // Persist a local-stub confirmation if the backend isn't reachable yet.
-      if (!payload) {
-        payload = {
-          submission_id: 'LOCAL-' + Date.now().toString(36).toUpperCase(),
-          status: 'pending_review',
-          message: 'Backend not yet deployed, this is a local preview confirmation.',
-        };
-      }
+      const payload = await resp.json();
       sessionStorage.setItem('osea_last_submission', JSON.stringify(payload));
       window.location.href = '../../thanks.html';
     } catch (err) {
       console.error(err);
-      alert('Something went wrong filing the sighting. Please try again, or email us.');
+      alert('Your sighting could not be filed, and has NOT been saved. '
+        + 'Please keep the original photograph and try again later.');
       submitBtn.disabled = false;
       submitBtn.textContent = original;
     }
